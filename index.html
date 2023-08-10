@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Gradient Generator! 🔥</title>
+  <style>
+    body {
+      font-family: "SF Pro Display", Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f1f1f1;
+    }
+    
+    .navbar {
+      position: sticky;
+      top: 0;
+      background-color: #B8F4CA;
+      padding: 10px;
+      z-index: 1;
+    }
+    
+    .navbar a {
+      color: #333;
+      text-decoration: none;
+      margin-right: 20px;
+    }
+    
+    .navbar .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+    
+    .navbar .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 2;
+    }
+    
+    .navbar .dropdown:hover .dropdown-content {
+      display: block;
+    }
+    
+    .navbar .dropdown-content a {
+      color: #333;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+    
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    
+    .gradient-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 300px;
+      background: linear-gradient(to right, #2929ff, #00ff00);
+      margin-bottom: 20px;
+      margin-left: 20px;
+      margin-right: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      transition: background 0.3s ease-in-out;
+    }
+    
+    .code-container {
+      text-align: center;
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+    
+    .code {
+      background-color: #f5f5f5;
+      border: 1px solid #ccc;
+      padding: 10px;
+      font-size: 14px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      font-family: "Apple Color Emoji", Arial, sans-serif;
+    }
+    
+    .copy-button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin-top: 10px;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background-color 0.3s ease-in-out;
+    }
+    
+    .copy-button:hover {
+      background-color: #45a049;
+    }
+  </style>
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;700&display=swap">
+  
+  <script>
+    function generateGradient() {
+      var color1 = document.getElementById('color1').value;
+      var color2 = document.getElementById('color2').value;
+      
+      var gradientContainer = document.querySelector('.gradient-container');
+      gradientContainer.style.background = 'linear-gradient(to right, ' + color1 + ', ' + color2 + ')';
+      
+      var codeElement = document.querySelector('.code');
+      codeElement.innerText = 'background: linear-gradient(to right, ' + color1 + ', ' + color2 + ');';
+    }
+    
+    function copyCode() {
+      var codeElement = document.querySelector('.code');
+      var code = codeElement.innerText;
+      
+      navigator.clipboard.writeText(code)
+        .then(function() {
+          alert('Code copied to clipboard!');
+        })
+        .catch(function() {
+          alert('Failed to copy code to clipboard!');
+        });
+    }
+  </script>
+</head>
+<body>
+  <div class="navbar">
+    <a href="https://example.com">Github</a>
+    <div class="dropdown">
+      <a href="#">Dropdown ↓</a>
+      <div class="dropdown-content">
+        <a href="#">Item 1</a>
+        <a href="#">Item 2</a>
+        <a href="#">Item 3</a>
+      </div>
+    </div>
+  </div>
+  
+  <h1>Gradient Designer</h1>
+  
+  <div class="gradient-container"></div>
+  
+  <div class="code-container">
+    <input type="color" id="color1" onchange="generateGradient()">
+    <input type="color" id="color2" onchange="generateGradient()">
+    <div class="code">
+      background: linear-gradient(to right, #ff0000, #00ff00);
+    </div>
+    <button class="copy-button" onclick="copyCode()">Copy Code</button>
+  </div>
+</body>
+</html>
